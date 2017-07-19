@@ -1,0 +1,84 @@
+        <div class="modal-content">        
+            <button type="button" class="close" ng-click="cancel();">
+                <i class="fa fa-times" style="margin:10px; color:blue;"></i>
+            </button>
+            <div class="modal-header">
+                <h3 class="modal-title" ng-model="title">{{title}}</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" novalidate>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Name </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" placeholder="Site or lamp name" ng-model="site.name" required/>
+                            </div>
+                            <label class="col-md-2 control-label">Pole </label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="Pole" ng-model="site.pole"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Address </label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="Address" ng-model="site.address"/>
+                            </div>
+                            <label class="col-md-1 control-label">KM </label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="KM" ng-model="site.km"/>
+                            </div>
+                            <label class="col-md-2 control-label">Channel </label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="Chanel" ng-model="site.chanel"/>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Position </label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Latitude" ng-model="site.latitude" required/>
+                            </div>
+                            <label class="col-md-1 control-label"> </label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Longitude" ng-model="site.longitude" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Position </label>
+                            <div class="col-md-3">
+                                <input type="radio" name="pos" value="master" ng-model="site.pos" ng-checked="site.consent_id == null" /> Master 
+                                <input type="radio" name="pos" value="slave" ng-model="site.pos" ng-checked="site.consent_id != null" /> Slave
+                            </div>
+                            <label class="col-md-2 control-label">IMEI</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="IMEI number" ng-model="site.imei" ng-disabled="site.pos == 'slave'"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Master References </label>
+                            <div class="col-md-9">
+                                <select class="form-control" ng-model="site.consent_id" ng-disabled="site.pos == 'master'">
+                                    <option ng-repeat="c in masters" ng-selected="site.consent_id===c.id" value="{{c.id}}">{{c.name}} - IMEI {{c.imei}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Network Group </label>
+                            <div class="col-md-9">
+                                <select class="form-control" ng-model="site.subnet_id">
+                                    <option ng-repeat="c in areas" ng-selected="site.subnet_id===c.id" value="{{c.id}}">{{c.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <a class="btn btn-sm btn-default" ng-click="cancel()"><i class="fa fa-reply"></i> Cancel</a>
+                    <button ng-click="save(site);"
+                        ng-disabled="form.$invalid || enableUpdate"
+                        class="btn btn-sm btn-primary"
+                        type="button">
+                        <i class="fa fa-check"></i> {{buttonText}}
+                    </button>  
+                </div>
+            </div>
+        </div>

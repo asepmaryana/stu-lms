@@ -1,0 +1,131 @@
+<div class="page-heading">
+    <h1>{{node.name}} - {{node.subnet}}</h1>                        
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading"><strong>Identity</strong></div>
+                <div class="panel-body" style="height: 150px; padding: 2px;">
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr>
+                                <td rowspan="2" class="text-center">
+                                    <img ng-src="./assets/img/{{node.status == '1' ? 'lamp_green.png' : 'lamp_grey.png'}}" border="0"/><br />
+                                    {{node.status == '1' ? 'ON' : 'OFF'}}
+                                </td>
+                                <td><strong>Address</strong></td>
+                                <td>{{node.address}}</td>
+                                
+                                <td><strong>Chanel</strong></td>
+                                <td>{{node.chanel}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>KM</strong></td>
+                                <td>{{node.km}}</td>
+                                
+                                <td><strong>Latitude</strong></td>
+                                <td>{{node.latitude}}</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td><strong>Pole</strong></td>
+                                <td>{{node.pole}} V</td>
+                                <td><strong>Longitude</strong></td>
+                                <td>{{node.longitude}}</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td><strong>Created</strong></td>
+                                <td>{{node.created_at}}</td>
+                                <td><strong>Updated</strong></td>
+                                <td>{{node.updated_at}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading"><strong>Cell Voltage</strong></div>
+                <div class="panel-body" style="padding: 2px; height: 150px;">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="text-center"><strong>Cell 1</strong></td>
+                                <td class="text-center">{{node.cell_1_volt}}</td>
+                                <td class="text-center"><strong>Cell 5</strong></td>
+                                <td class="text-center">{{node.cell_5_volt}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><strong>Cell 2</strong></td>
+                                <td class="text-center">{{node.cell_2_volt}}</td>
+                                <td class="text-center"><strong>Cell 6</strong></td>
+                                <td class="text-center">{{node.cell_6_volt}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><strong>Cell 3</strong></td>
+                                <td class="text-center">{{node.cell_3_volt}}</td>
+                                <td class="text-center"><strong>Cell 7</strong></td>
+                                <td class="text-center">{{node.cell_7_volt}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><strong>Cell 4</strong></td>
+                                <td class="text-center">{{node.cell_4_volt}}</td>
+                                <td class="text-center"><strong>Cell 8</strong></td>
+                                <td class="text-center">{{node.cell_8_volt}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">
+            <div class="panel">
+                <div class="panel-heading"><strong>Pack Voltage</strong></div>
+                <div class="panel-body" id="pvchart" style="height: 150px; padding: 0px;"></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel">
+                <div class="panel-heading"><strong>Batt Voltage</strong></div>
+                <div class="panel-body" id="vbchart" style="height: 150px; padding: 0px;"></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel">
+                <div class="panel-heading"><strong>Batt Curr</strong></div>
+                <div class="panel-body" id="bcchart" style="height: 150px; padding: 0px;"></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel">
+                <div class="panel-heading"><strong>Load Curr</strong></div>
+                <div class="panel-body" id="lcchart" style="height: 150px; padding: 0px;"></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel">
+                <div class="panel-heading"><strong>Temp Ctrl</strong></div>
+                <div class="panel-body" id="tcchart" style="height: 150px; padding: 0px;"></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel">
+                <div class="panel-heading"><strong>Temp Batt</strong></div>
+                <div class="panel-body" id="tbchart" style="height: 150px; padding: 0px;"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,144 @@
+<div class="page-heading">
+    <h1>Datalog</h1>                        
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="panel panel-midnightblue">
+                        <div class="panel-heading"><i class="fa fa-globe"></i> Region</div>
+                        <div class="panel-body scroll-pane" style="height: 170px;">
+                            <div class="scroll-content" style="padding: 4px;">
+                                <div class="checkbox green icheck" ng-repeat="r in regions">
+                                    <label><input icheck type="checkbox" ng-model="x" ng-change="updateSelectedRegion($event, r.id)"/> {{r.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-midnightblue">
+                        <div class="panel-heading"><i class="fa fa-sitemap"></i> Area</div>
+                        <div class="panel-body scroll-pane" style="height: 170px;">
+                            <div class="scroll-content" style="padding: 4px;">
+                                <div class="checkbox green icheck" ng-repeat="a in areas">
+                                    <label><input icheck type="checkbox" ng-model="y" ng-change="updateSelectedArea($event, a.id)"/> {{a.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-midnightblue">
+                        <div class="panel-heading"><i class="fa fa-map-marker"></i> Site</div>
+                        <div class="panel-body scroll-pane" style="height: 170px;">
+                            <div class="scroll-content" style="padding: 4px;">
+                                <div class="checkbox green icheck" ng-repeat="s in sites">
+                                    <label><input icheck type="checkbox" ng-model="z" ng-change="updateSelectedSite($event, s.id)"/> {{s.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-midnightblue">
+                        <div class="panel-heading"><i class="fa fa-calendar"></i> Date Periode</div>
+                        <div class="panel-body" style="height: 170px;">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="startDate" placeholder="Start Date"/>
+                                <input type="text" class="form-control" id="stopDate" placeholder="Stop Date"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        View <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a ng-click="viewData('table')"><i class="fa fa-table"></i> As Table</a></li>
+                                        <li><a ng-click="viewData('chart')"><i class="fa fa-bar-chart-o"></i> As Chart</a></li>
+                                        <li class="divider"></li>
+                                        <li><a ng-click="viewData('xls')"><i class="fa fa-file-excel-o"></i> As Excel</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-sky">
+                <div class="panel-heading"><i class="fa fa-bell"></i> Data Log</div>
+                <div class="panel-body">
+                    <div class="alert alert-info" ng-if="datalogs.length == 0">No data log found.</div>
+                    
+                    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" ng-if="datalogs.length > 0 && mode == 'table'">
+                        <thead>
+                            <tr>
+                                <th class="text-center" rowspan="2">Date Time</th>
+                                <th class="text-center" rowspan="2">PV</th>
+                                <th class="text-center" colspan="2">Batt </th>
+                                <th class="text-center" rowspan="2">I Load</th>
+                                <th class="text-center" colspan="2">Temp </th>
+                                <th class="text-center" rowspan="2">Status</th>
+                                <th class="text-center" colspan="9">Volt</th>
+                                <th class="text-center" colspan="2">BMS</th>
+                                <th class="text-center" rowspan="2">SoC</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Volt</th>
+                                <th class="text-center">Curr</th>
+                                <th class="text-center">Ctrl</th>
+                                <th class="text-center">Batt</th>
+                                <th class="text-center">Pack</th>
+                                <th class="text-center">Cell 1</th>
+                                <th class="text-center">Cell 2</th>
+                                <th class="text-center">Cell 3</th>
+                                <th class="text-center">Cell 4</th>
+                                <th class="text-center">Cell 5</th>
+                                <th class="text-center">Cell 6</th>
+                                <th class="text-center">Cell 7</th>
+                                <th class="text-center">Cell 8</th>
+                                <th class="text-center">Curr</th>
+                                <th class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="r in datalogs">
+                                <td>{{r.dtime}}</td>
+                                <td>{{r.pvoltage}}</td>
+                                <td>{{r.vbatt}}</td>
+                                <td>{{r.ibatt}}</td>
+                                <td>{{r.iload}}</td>
+                                <td>{{r.temperature_ctrl}}</td>
+                                <td>{{r.temperature_batt}}</td>
+                                <td>{{r.status == '0' ? 'OFF':'ON' }}</td>
+                                <td>{{r.pack_volt}}</td>
+                                <td>{{r.cell_1_volt}}</td>
+                                <td>{{r.cell_2_volt}}</td>
+                                <td>{{r.cell_3_volt}}</td>
+                                <td>{{r.cell_4_volt}}</td>
+                                <td>{{r.cell_5_volt}}</td>
+                                <td>{{r.cell_6_volt}}</td>
+                                <td>{{r.cell_7_volt}}</td>
+                                <td>{{r.cell_8_volt}}</td>
+                                <td>{{r.bms_curr}}</td>
+                                <td>{{r.bms_status}}</td>
+                                <td>{{r.soc}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <am-chart id="node_chart" options="amChartOptions" height="400px" width="100%" ng-if="mode == 'chart'"></am-chart>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,57 @@
+        <div class="modal-content">        
+            <button type="button" class="close" ng-click="cancel();">
+                <i class="fa fa-times" style="margin:10px; color:blue;"></i>
+            </button>
+            <div class="modal-header">
+                <h3 class="modal-title" ng-model="title">{{title}}</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Username </label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required/>
+                            </div>
+                            <label class="col-md-2 control-label">Password </label>
+                            <div class="col-md-4">
+                                <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Fullname </label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Full name" ng-model="user.name"/>
+                            </div>
+                            <label class="col-md-2 control-label">Email </label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Email" ng-model="user.email"/>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Role </label>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-model="user.roles_id" required>
+                                    <option ng-repeat="c in roles" ng-selected="user.roles_id === c.id" value="{{c.id}}">{{c.name}}</option>
+                                </select>
+                            </div>
+                            <label class="col-md-2 control-label">Customer </label>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-model="user.customers_id">
+                                    <option ng-repeat="c in customers" ng-selected="user.customers_id === c.id" value="{{c.id}}">{{c.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <a class="btn btn-sm btn-default" ng-click="cancel()"><i class="fa fa-reply"></i> Cancel</a>
+                    <button ng-click="save(user);"
+                        ng-disabled="form.$invalid || enableUpdate"
+                        class="btn btn-sm btn-primary"
+                        type="button">
+                        <i class="fa fa-check"></i> {{buttonText}}
+                    </button>  
+                </div>
+            </div>
+        </div>
